@@ -6,7 +6,7 @@ By writing my University CFS id (username) below I acknowledge that:
 If you do not write your username below, your coursework will not be marked.
 
 --------------------------------------------------------------------------
-UoL username: <enter your username here>
+UoL username: da201
 --------------------------------------------------------------------------
 
 Example: 
