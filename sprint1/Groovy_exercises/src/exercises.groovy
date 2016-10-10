@@ -1,8 +1,11 @@
+import groovy.lang.Range;
 import java.util.List;
 
 def name = "my name"
 def date = new Date().format ("dd-mm-yyyy")
 def fruitBag = ["orange","banana","coconut"]
+def range = (0..9)
+
 
 // ex 01 (*). print "my name: 06-18-2016" on the output console using a GString
 
@@ -28,21 +31,19 @@ for (fruit in fruitBag)
 {
 	println fruit
 }
-
 //ex 03
-def findAverage(List nums)
+def findAverage (Range range)
 {
-	def sum
-	for (i in nums)
-	{
-		sum+=i
-	}
-	sum=sum/2
+	def average
+	average = (range.getFrom()+range.getTo())/2
+	println average
 }
+findAverage(range)
 
 //ex 04
-println "Does fruitBag contains 'banana': "+fruitBag.contains("banana")
+println "Does fruitBag contains 'banana?': "+fruitBag.contains("banana")
 
 //ex 05
 def containsN = fruitBag.collect{it -> it.contains("n")}
-println "The words in fruitBag that contain the letter 'n': "+containsN
+println "The words in fruitBag that contain the letter 'n'?: "+containsN
+
