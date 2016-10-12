@@ -1,9 +1,33 @@
-task wrapper(type: Wrapper) {
-	gradleVersion = '3.0'
-}
-
 // EXERCISE A 
-
-// EXERCISE B
-
-// EXERCISE C
+println "Hello World!"
+// EXERCISE B)
+task Task1
+Task1.description = "I'm task number 1"
+Task1 << {it -> println "${it.description}"}
+task Task2
+Task2.description = "I'm task number 2"
+Task2 << {it -> println "${it.description}"}
+task Task3
+Task3.description = "I'm task number 3"
+Task3 << {it -> println "${it.description}"}
+task Task4
+Task4.description = "I'm task number 4"
+Task4 << {it -> println "${it.description}"}
+task Task5
+Task5.description = "I'm task number 5"
+Task5 << {it -> println "${it.description}"}
+task Task6
+Task6.description = "I'm task number 6"
+Task6 << {it -> println "${it.description}"}
+//section 2
+Task6.dependsOn Task2, Task5, Task4
+Task5.dependsOn Task3
+Task4.dependsOn Task3
+Task3.dependsOn Task1
+Task2.dependsOn Task1
+// EXERCISE Copy
+task copyFiles(type: Copy)	{
+	from 'src/main/resources/source/'
+		exclude '1.txt', '3.txt', '5.txt'
+	into 'src/main/resources/target/'
+}
