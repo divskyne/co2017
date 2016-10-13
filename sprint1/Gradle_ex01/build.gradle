@@ -32,7 +32,7 @@ task copyFiles(type: Copy)	{
 	for (int i = 1; i < 100; i++) {
 			if (i%2!=0)
 			{
-				excludeList += ", "+"$i.txt"
+				excludeList += ", "+"${i}.txt"
 			}
 		}
 	exclude "excludeList"
