@@ -26,16 +26,17 @@ Task4.dependsOn Task3
 Task3.dependsOn Task1
 Task2.dependsOn Task1
 // EXERCISE Copy
-task copyFiles(type: Copy)	{
-	from "src/main/resources/source/"
-	def excludeList = "1.txt"
-	for (int i = 1; i < 100; i++) {
-			if (i%2!=0)
-			{
-				excludeList += ", "+"${i}.txt"
-			}
-		}
-	exclude "excludeList"
-//	exclude '1.txt', '3.txt', '5.txt'
-	into "src/main/resources/target/"
+task copyFiles(type: Copy)      {
+        from "src/main/resources/source/"
+/*      def excludeList = "1.txt"
+        for (int i = 1; i < 10; i++) {
+                        if (i%2!=0)
+                        {
+
+                        }
+                }*/
+        exclude {filez -> filez.file.name%2!=0}
+//      exclude '1.txt', '3.txt', '5.txt'
+        into "src/main/resources/target/"
 }
+
