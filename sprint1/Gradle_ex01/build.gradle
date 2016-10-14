@@ -32,7 +32,6 @@ task copyFiles(type: Copy)      {
                         {
 							from "src/main/resources/source/"
 							include "$i"+".txt"
-							println '$i'
 							into "src/main/resources/target/"
                         }
                 }
