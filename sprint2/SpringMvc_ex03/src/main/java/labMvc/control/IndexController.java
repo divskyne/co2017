@@ -19,9 +19,18 @@ public class IndexController {
         return "index";
     }
 
-//    @RequestMapping(value = "/student", method = RequestMethod.GET)
-    //TODO
+    @RequestMapping(value = "/student", method = RequestMethod.GET)
+    public String student(@ModelAttribute("student") Student student) 
+    {
+    	return "form/form";
+    }
     
-//    @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-    //TODO
+    @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
+    public String addStudent(@ModelAttribute("student") Student student,  Model model) 
+    {
+        model.addAttribute("name", student.getName());
+        model.addAttribute("age", student.getAge());
+        model.addAttribute("id", student.getId());
+        return "form/result";
+     } 
 }
