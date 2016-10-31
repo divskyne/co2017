@@ -1,0 +1,25 @@
+diff -b /s_home/da201/git/CO2006-16-17/diff.patch /s_home/da201/git/co2006-16-17-divskyne/diff.patch
+1,12d0
+< Only in /s_home/da201/git/CO2006-16-17/: diff.patch
+< Common subdirectories: /s_home/da201/git/CO2006-16-17/.git and /s_home/da201/git/co2006-16-17-divskyne/.git
+< diff -b /s_home/da201/git/CO2006-16-17/.gitignore /s_home/da201/git/co2006-16-17-divskyne/.gitignore
+< 4d3
+< < .DS_Store
+< Common subdirectories: /s_home/da201/git/CO2006-16-17/sprint1 and /s_home/da201/git/co2006-16-17-divskyne/sprint1
+< Common subdirectories: /s_home/da201/git/CO2006-16-17/sprint2 and /s_home/da201/git/co2006-16-17-divskyne/sprint2
+< diff -b /s_home/da201/git/CO2006-16-17/username.md /s_home/da201/git/co2006-16-17-divskyne/username.md
+< 9c9
+< < UoL username: <enter your username here>
+< ---
+< > UoL username: da201
+Common subdirectories: /s_home/da201/git/CO2006-16-17/.git and /s_home/da201/git/co2006-16-17-divskyne/.git
+diff -b /s_home/da201/git/CO2006-16-17/.gitignore /s_home/da201/git/co2006-16-17-divskyne/.gitignore
+4d3
+< .DS_Store
+Common subdirectories: /s_home/da201/git/CO2006-16-17/sprint1 and /s_home/da201/git/co2006-16-17-divskyne/sprint1
+Common subdirectories: /s_home/da201/git/CO2006-16-17/sprint2 and /s_home/da201/git/co2006-16-17-divskyne/sprint2
+diff -b /s_home/da201/git/CO2006-16-17/username.md /s_home/da201/git/co2006-16-17-divskyne/username.md
+9c9
+< UoL username: <enter your username here>
+---
+> UoL username: da201
