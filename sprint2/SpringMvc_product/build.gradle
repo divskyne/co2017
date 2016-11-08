@@ -24,6 +24,17 @@ repositories {
 	mavenCentral()
 }
 
+eclipse {
+	project {
+	  name = 'SpringMvc_product'
+	  buildCommand 'org.eclipse.jdt.core.javabuilder'
+	  buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+	  buildCommand 'org.springframework.ide.eclipse.core.springbuilder'
+	  buildCommand 'org.eclipse.wst.common.project.facet.core.builder'
+	  natures 'org.eclipse.jdt.core.javanature', 'org.eclipse.buildship.core.gradleprojectnature', 'org.springframework.ide.eclipse.core.springnature', 'org.eclipse.wst.common.project.facet.core.nature'
+	}
+}
+
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") 
 	// JSP

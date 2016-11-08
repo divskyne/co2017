@@ -1,5 +1,5 @@
 /**
- * (C) Artur Boronat, 2016
+ * (C) Artur Boronat, 2015
  */
 package eMarket.controller;
 
@@ -29,8 +29,12 @@ public class ProductController {
     		// modify
     		Product p2 = EMarketApp.getStore().getProductList().stream().filter(p -> (((Product) p).getId() == productId)).findAny().get();
     		product.setId(p2.getId());
+    		if (p2.getName().equals("")) 
+    			throw new SpringException("Name is empty.");
     		product.setName(p2.getName());
     		product.setDescription(p2.getDescription());
+    		if (p2.getPrice() < 0.0) 
+    			throw new SpringException("Value is negative.");
     		product.setPrice(p2.getPrice());
     	} else {
     		// add
@@ -41,12 +45,17 @@ public class ProductController {
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String productMaster(@ModelAttribute("product") Product product, Model model) {
+    	if (product.getPrice() < 0.0) 
+			throw new SpringException("Value is negative.");
+		if (product.getName().equals("")) 
+			throw new SpringException("Name is empty.");    	
 
     	EMarketApp.getStore().getProductList().removeIf(p -> (p.getId() == product.getId()));
     	EMarketApp.getStore().getProductList().add(product);
    		
     	model.addAttribute("productList", EMarketApp.getStore().getProductList());
-        return "form/productMaster";
+//        return "form/productMaster";
+    	return "redirect:/product/";
     }   
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)

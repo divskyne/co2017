@@ -6,19 +6,31 @@ package eMarket.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Store {
 	List<Product> productList = new ArrayList<>();
+	List<Order> orderList = new ArrayList<>();
 	
 	public void init() {
 		productList = new ArrayList<>();
 		Product.lastId=0;
+		orderList = new ArrayList<>();
+		Order.lastId=0;
 	}
 
 	public void setProductList(List<Product> productList) {
 		this.productList = productList;
 	}
 	
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+	
 	public List<Product> getProductList() {
 		return productList;
+	}
+	
+	public List<Order> getOrderList() {
+		return orderList;
 	}
 }
