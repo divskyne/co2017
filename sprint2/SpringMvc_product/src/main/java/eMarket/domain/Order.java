@@ -3,6 +3,9 @@
  */
 package eMarket.domain;
 
+/*import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;*/
 import java.util.Date;
 
 public class Order {
@@ -14,6 +17,7 @@ public class Order {
     private Double cost;
     private String description;
     private Double price;
+    private Double amount;
     
     public Order(){}
     
@@ -31,6 +35,11 @@ public class Order {
 
 	public int getId() {
 		return id;
+	}
+	
+	public int getLastId() 
+	{
+		return lastId;
 	}
 
 	public void setId(int id) {
@@ -50,8 +59,17 @@ public class Order {
 	}
 	
 	public void setDate() {
-		Date date = new Date();
-		this.date = date.toString();
+/*		SimpleDateFormat dateformat3 = new SimpleDateFormat("dd/MM/yyyy");
+		Date newDate;*/
+//		new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
+		Date newDate = new Date();
+/*		try {
+			newDate = dateformat3.parse(new Date().toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.date = newDate.toString();*/
+		this.date = newDate.toString();
 	}
 	
 	public Double getCost() {
@@ -60,6 +78,14 @@ public class Order {
 	
 	public void setCost(Double cost) {
 		this.cost = cost;
+	}
+	
+	public Double getAmount() {
+		return amount;
+	}
+	
+	public void setAmount(Double amount) {
+		 this.amount = amount;
 	}
 
 	public String getDescription() {

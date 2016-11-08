@@ -23,6 +23,12 @@ public class OrderController {
         return "form/orderMaster";
     }
     
+    @RequestMapping("/add")
+    public String index1(Model model) {
+    	model.addAttribute("orderList", EMarketApp.getStore().getOrderList());
+        return "form/orderDetail";
+    }
+    
     @RequestMapping(value = "/orderDetail", method = RequestMethod.GET)
     public String orderDetail(@ModelAttribute("order") Order order, @RequestParam(value="orderId", required=false, defaultValue="-1") int orderId) {
     	if (orderId >= 0) {
