@@ -23,23 +23,9 @@ public class OrderController {
         return "form/orderMaster";
     }
     
-    @RequestMapping(value = "/orderDetail", method = RequestMethod.GET)
-    public String orderDetail(@ModelAttribute("order") Order order, @RequestParam(value="orderId", required=false, defaultValue="-1") int orderId) {
-    	if (orderId >= 0) {
-    		// modify
-    		Order p2 = EMarketApp.getStore().getOrderList().stream().filter(p -> (((Order) p).getId() == orderId)).findAny().get();
-    		order.setId(p2.getId());
-    		if (p2.getName().equals("")) 
-    			throw new SpringException("Name is empty.");
-    		order.setName(p2.getName());
-    		order.setDescription(p2.getDescription());
-    		if (p2.getPrice() < 0.0) 
-    			throw new SpringException("Value is negative.");
-    		order.setPrice(p2.getPrice());
-    	} else {
-    		// add
-    		order.setId();
-    	}
+    @RequestMapping("/add")
+    public String orderDetail(Model model) {
+    	model.addAttribute("orderList", EMarketApp.getStore().getOrderList());
     	return "form/orderDetail";
     }   
     
