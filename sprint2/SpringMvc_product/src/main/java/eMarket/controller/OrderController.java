@@ -23,12 +23,6 @@ public class OrderController {
         return "form/orderMaster";
     }
     
-    @RequestMapping("/add")
-    public String index1(Model model) {
-    	model.addAttribute("orderList", EMarketApp.getStore().getOrderList());
-        return "form/orderDetail";
-    }
-    
     @RequestMapping(value = "/orderDetail", method = RequestMethod.GET)
     public String orderDetail(@ModelAttribute("order") Order order, @RequestParam(value="orderId", required=false, defaultValue="-1") int orderId) {
     	if (orderId >= 0) {
@@ -50,7 +44,7 @@ public class OrderController {
     }   
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String orderMaster(@ModelAttribute("order") Order order, Model model) {
+    public String orderDetail(@ModelAttribute("order") Order order, Model model) {
     	if (order.getPrice() < 0.0) 
 			throw new SpringException("Value is negative.");
 		if (order.getName().equals("")) 
@@ -60,8 +54,7 @@ public class OrderController {
     	EMarketApp.getStore().getOrderList().add(order);
    		
     	model.addAttribute("orderList", EMarketApp.getStore().getOrderList());
-//        return "form/orderMaster";
-    	return "redirect:/order/";
+    	return "form/orderDetail";
     }   
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -69,8 +62,5 @@ public class OrderController {
     	EMarketApp.getStore().getOrderList().removeIf(p -> (p.getId() == orderId));
     	model.addAttribute("orderList", EMarketApp.getStore().getOrderList());
     	return "form/orderMaster";
-    }   
-    
-    
-    
+    }
 }

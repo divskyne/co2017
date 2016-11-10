@@ -31,7 +31,7 @@
 <body>
 <h2>Order Information</h2>
 <section>
-<p>id: <a>${order.getLastId()}</a></p>
+<p>id: <a>${order.lastId}</a></p>
 <p>Date: <a data-value="${order.setDate()}">${order.getDate()}</a></p>
 </section>
 <section>

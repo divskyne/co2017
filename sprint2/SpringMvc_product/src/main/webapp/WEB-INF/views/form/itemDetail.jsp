@@ -4,11 +4,27 @@
 <link rel="stylesheet" media="screen" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
 <html>
 <head>
-    <title>Product Editing</title>
+    <title>Item Editing</title>
 </head>
 <body>
-<h2>New/edit Product Information</h2>
-<form:form method="POST" commandName="product" action="/product/add">
+<h2>New/edit Item Information</h2>
+<fieldset>
+				<legend>Inquiry</legend>
+				<form:label path="inquiry">
+					Type (select one)
+				</form:label>
+				<form:select path="inquiry">
+					<form:option value="comment">Comment</form:option>
+					<form:option value="feedback">Feedback</form:option>
+					<form:option value="suggestion">Suggestion</form:option>
+				</form:select>
+				
+		  		<form:label path="inquiryDetails">
+		  			Details
+		  		</form:label>
+		  		<form:textarea path="inquiryDetails" />
+</fieldset>
+<form:form method="POST" commandName="item" action="/item/add">
    <table>
     <tr>
         <td><form:label path="id">Id</form:label></td>

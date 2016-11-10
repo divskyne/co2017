@@ -32,6 +32,7 @@
 <h2>All orders</h2>
 <section>
 <a href="/order/add" class="btn btn-default">Add new order</a>
+<a href="/order/delete" class="btn btn-default">Delete order</a>
 <a href="/" class="btn btn-default">Main page</a>
 <p/>
 </section>

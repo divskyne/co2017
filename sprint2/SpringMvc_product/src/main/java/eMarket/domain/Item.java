@@ -3,22 +3,18 @@
  */
 package eMarket.domain;
 
-import java.time.LocalDateTime;
 
-public class Order {
+public class Item {
 
 	public static int lastId = 0;
     private int id = -1;
     private String name;
-    private String date;
-    private Double cost;
     private String description;
     private Double price;
-    private Double amount;
     
-    public Order(){}
+    public Item(){}
     
-    public Order(int id, String name, String description, Double price) {
+    public Item(int id, String name, String description, Double price) {
 		this.setId(id);
 		this.setName(name);
 		this.setDescription(description);
@@ -44,35 +40,6 @@ public class Order {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public String getDate() {
-		return date;
-	}
-	
-	public void setDate() {
-		LocalDateTime now = LocalDateTime.now();
-    	int year = now.getYear();
-    	int month = now.getMonthValue();
-    	int day = now.getDayOfMonth();
-    	date = year+"-"+month+"-"+day;
-		this.date = date.toString();
-	}
-	
-	public Double getCost() {
-		return cost;
-	}
-	
-	public void setCost(Double cost) {
-		this.cost = cost;
-	}
-	
-	public Double getAmount() {
-		return amount;
-	}
-	
-	public void setAmount(Double amount) {
-		 this.amount = amount;
 	}
 
 	public String getDescription() {
