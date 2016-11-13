@@ -10,7 +10,7 @@ import java.util.List;
 public class Store {
 	List<Product> productList = new ArrayList<>();
 	List<Order> orderList = new ArrayList<>();
-	List<Item> itemList = new ArrayList<>();
+	List<Item> itemList = new ArrayList<>();;
 	
 	public void init() {
 		productList = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Store {
 		orderList = new ArrayList<>();
 		Order.lastId=0;
 		itemList = new ArrayList<>();
-		Item.lastId=0;
+		Order.lastId=0;
 	}
 
 	public void setProductList(List<Product> productList) {

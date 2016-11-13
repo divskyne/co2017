@@ -54,8 +54,8 @@ public class ProductController {
     	EMarketApp.getStore().getProductList().add(product);
    		
     	model.addAttribute("productList", EMarketApp.getStore().getProductList());
-//        return "form/productMaster";
-    	return "redirect:/product/";
+        return "form/productMaster";
+//    	return "redirect:/product/";
     }   
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
