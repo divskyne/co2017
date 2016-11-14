@@ -23,23 +23,8 @@ public class ItemController {
         return "form/itemMaster";
     }
     
-    @RequestMapping(value = "/itemDetail", method = RequestMethod.GET)
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String itemDetail(Model model, @ModelAttribute("item") Item item, @RequestParam(value="itemId", required=false, defaultValue="-1") int itemId) {
-/*    	if (itemId >= 0) {
-    		// modify
-    		Item p2 = EMarketApp.getStore().getItemList().stream().filter(p -> (((Item) p).getId() == itemId)).findAny().get();
-    		item.setId(p2.getId());
-    		if (p2.getName().equals("")) 
-    			throw new SpringException("Name is empty.");
-    		item.setName(p2.getName());
-    		item.setDescription(p2.getDescription());
-    		if (p2.getPrice() < 0.0) 
-    			throw new SpringException("Value is negative.");
-    		item.setPrice(p2.getPrice());
-    	} else {
-    		// add
-    		item.setId();
-    	}*/
     	model.addAttribute("itemList", EMarketApp.getStore().getItemList());
     	return "form/itemDetail";
     }   
@@ -59,7 +44,7 @@ public class ItemController {
 //    	return "redirect:/item/";
     }   
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String itemMaster(@RequestParam(value="itemId", required=false, defaultValue="-1") int itemId, Model model) {
     	EMarketApp.getStore().getItemList().removeIf(p -> (p.getId() == itemId));
     	model.addAttribute("itemList", EMarketApp.getStore().getItemList());

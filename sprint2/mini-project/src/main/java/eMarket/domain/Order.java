@@ -35,7 +35,7 @@ public class Order {
 	}
 	
 	public int getLastId() {
-		return this.setLastID(id);
+		return lastId;
 		
 	}
 
@@ -99,15 +99,5 @@ public class Order {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-
-	public int getLastID() {
-		return lastID;
-	}
-
-	public int setLastID(int lastID) {
-		this.lastID = lastID;
-		return lastID;
-	}
-
 
 }

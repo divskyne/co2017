@@ -33,7 +33,7 @@
 <body>
 <h2>Order Information</h2>
 <section>
-<p>id: <a>${order.lastId}</a></p>
+<p>id: <a></a></p>
 <p>Date: <a>
 <%LocalDateTime now = LocalDateTime.now();
 int year = now.getYear();
@@ -43,7 +43,8 @@ String date = year+"-"+month+"-"+day;
 out.print(date); %></a></p>
 </section>
 <section>
-<a href="/item/itemDetail" class="btn btn-default">Add new item</a>
+<p>
+<a href="/item/detail" class="btn btn-default">Add new item</a>
 <a href="/order/" class="btn btn-default">Show all orders</a>
 <p/>
 </section>
