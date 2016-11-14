@@ -11,11 +11,9 @@
 <form:form method="POST" commandName="item" action="/item/add">
 	<select>
 		<option value="NONE">--- Select ---</option>
-			<c:forEach items="${productList}" var="product">
-				<form:options items="${productList}" />			
-				<option value="name">${product.getName()}</option>
-			</c:forEach>
-		<option></option>
+		<c:forEach items="${productList}" var="product">
+		<form:select path="product" items="${productList}"
+					multiple="true" /></c:forEach>
 	</select>
  <table>
     <tr>

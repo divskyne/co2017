@@ -10,10 +10,9 @@ public class Order {
 	public static int lastId = 0;
     private int id = -1;
     private String name;
-    private String date;
     private Double cost;
     private String description;
-    private Double price;
+    private Double price=0.0;
     private Double amount;
     
     public Order(){}
