@@ -10,13 +10,14 @@
 <h2>New/edit Item Information</h2>
 <form:form method="POST" commandName="item" action="/item/add">
 	<select>
-		<option>--none--</option>
+		<option value="NONE">--- Select ---</option>
 			<c:forEach items="${productList}" var="product">
+				<form:options items="${productList}" />			
 				<option value="name">${product.getName()}</option>
 			</c:forEach>
-			<option></option>
+		<option></option>
 	</select>
-   <table>
+ <table>
     <tr>
         <td colspan="2">
             <input type="submit" value="Submit" class="btn btn-default"/>
