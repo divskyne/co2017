@@ -9,19 +9,14 @@
 <body>
 <h2>New/edit Item Information</h2>
 <form:form method="POST" commandName="item" action="/item/add">
+	<select>
+		<option>--none--</option>
+			<c:forEach items="${productList}" var="product">
+				<option value="name">${product.getName()}</option>
+			</c:forEach>
+			<option></option>
+	</select>
    <table>
-    <tr>
-        <td><form:label path="name">Item: </form:label></td>
-        <td>
-        	<c:forEach items="${itemList}" var="product">
-        <td><c:out value="${item.getName()}"/></td>
-        	</c:forEach>
-        </td>
-    </tr>
-    <tr>
-        <td><form:label path="price">Amount: </form:label></td>
-        <td><form:input path="price" /></td>
-    </tr>
     <tr>
         <td colspan="2">
             <input type="submit" value="Submit" class="btn btn-default"/>

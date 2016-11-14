@@ -33,14 +33,8 @@
 <body>
 <h2>Order Information</h2>
 <section>
-<p>id: <a></a></p>
-<p>Date: <a>
-<%LocalDateTime now = LocalDateTime.now();
-int year = now.getYear();
-int month = now.getMonthValue();
-int day = now.getDayOfMonth();
-String date = year+"-"+month+"-"+day;
-out.print(date); %></a></p>
+<p>id: ${order.getId()}</p>
+<p>Date: ${order.getDate()}</p>
 </section>
 <section>
 <p>

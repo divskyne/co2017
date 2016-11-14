@@ -9,7 +9,6 @@ public class Order {
 
 	public static int lastId = 0;
     private int id = -1;
-    private int lastID;
     private String name;
     private String date;
     private Double cost;
@@ -22,11 +21,10 @@ public class Order {
     public Order(int id, String name, String description, Double price, Double amount) {
 		this.setId(id);
 		this.setName(name);
-		this.setDate();
 		this.setDescription(description);
 		this.setPrice(price);
 		this.setAmount(amount);
-		this.setCost(amount, price);
+		this.setCost(price);
 	}
 
 	public void setId() {
@@ -56,23 +54,28 @@ public class Order {
 	}
 	
 	public String getDate() {
+		LocalDateTime now = LocalDateTime.now();
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int day = now.getDayOfMonth();
+		String date = year+"-"+month+"-"+day;
 		return date;
 	}
 	
-	public void setDate() {
+/*	public void setDate(String string) {
 		LocalDateTime now = LocalDateTime.now();
-    	int year = now.getYear();
-    	int month = now.getMonthValue();
-    	int day = now.getDayOfMonth();
-    	date = year+"-"+month+"-"+day;
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int day = now.getDayOfMonth();
+		String date = year+"-"+month+"-"+day;
 		this.date = date.toString();
 	}
-	
+	*/
 	public Double getCost() {
 		return cost;
 	}
 	
-	public void setCost(Double amount, Double price) {
+	public void setCost(Double amount) {
 		this.cost = amount*price;
 	}
 	

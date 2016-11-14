@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import eMarket.EMarketApp;
 import eMarket.domain.Item;
+import eMarket.domain.Product;
+import eMarket.domain.Item;
 
 @Controller
 @RequestMapping("/item")
@@ -23,11 +25,31 @@ public class ItemController {
         return "form/itemMaster";
     }
     
-    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String itemDetail(Model model, @ModelAttribute("item") Item item, @RequestParam(value="itemId", required=false, defaultValue="-1") int itemId) {
     	model.addAttribute("itemList", EMarketApp.getStore().getItemList());
     	return "form/itemDetail";
-    }   
+    }*/
+    
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public String itemDetail(@ModelAttribute("product") Product product, @ModelAttribute("item") Item item, @RequestParam(value="itemId", required=false, defaultValue="-1") int itemId) {
+    	if (itemId >= 0) {
+    		// modify
+    		Product p2 = EMarketApp.getStore().getProductList().stream().filter(p -> (((Product) p).getId() == itemId)).findAny().get();
+    		item.setId(p2.getId());
+    		if (p2.getName().equals("")) 
+    			throw new SpringException("Name is empty.");
+    		item.setName(p2.getName());
+    		item.setDescription(p2.getDescription());
+    		if (p2.getPrice() < 0.0) 
+    			throw new SpringException("Value is negative.");
+    		item.setPrice(p2.getPrice());
+    	} else {
+    		// add
+    		item.setId();
+    	}
+    	return "form/itemDetail";
+    }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String itemMaster(@ModelAttribute("item") Item item, Model model) {
