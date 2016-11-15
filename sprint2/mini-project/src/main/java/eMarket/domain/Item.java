@@ -11,6 +11,8 @@ public class Item {
     private String name;
     private String description;
     private Double price;
+    private Double amount;
+    private Double cost;
     
     public Item(){}
     
@@ -50,13 +52,30 @@ public class Item {
 		this.description = description;
 	}
 
-	public Double getAmount() {
-		return price;
-	}
-
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
+	public Double getPrice() {
+		return price;
+		}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;	
+	}
+	
+	public Double getAmount() {
+		return amount;
+		}
+
+	public void setCost(Double cost) {
+		this.cost=cost;
+		
+	}
+	
+	public Double getCost() {
+		return cost;
+		}
 
 
 }

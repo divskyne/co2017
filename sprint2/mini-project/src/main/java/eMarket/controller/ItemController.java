@@ -3,6 +3,7 @@
  */
 package eMarket.controller;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,19 +34,19 @@ public class ItemController {
     public String itemDetail(Model model, @ModelAttribute("order") Order order, @ModelAttribute("item") Item item, @RequestParam(value="itemId", required=false, defaultValue="-1") int itemId) {
     	if (itemId >= 0) {
     		// modify
-    		Order order1 = EMarketApp.getStore().getOrderList().stream().filter(o -> (((Order)o).getId() == itemId)).findAny().get();
-    		order1.setId(order1.getId());
-    		if (order1.getName().equals("")) 
+    		Item item1 = EMarketApp.getStore().getItemList().stream().filter(i -> (((Item)i).getId() == itemId)).findAny().get();
+    		item1.setId(item1.getId());
+    		if (item1.getName().equals("")) 
     			throw new SpringException("Name is empty.");
-    		order1.setName(order1.getName());
-    		order1.setAmount(order1.getAmount());
-    		if (order1.getPrice() < 0.0) 
+    		item1.setName(item1.getName());
+    		item1.setAmount(item1.getAmount());
+    		if (item1.getPrice() < 0.0) 
     			throw new SpringException("Value is negative.");
-    		order1.setPrice(order1.getPrice());
+    		item1.setPrice(item1.getPrice());
     	} else {
     		// add
     		
-    		order.setId();
+    		item.setId();
     		
     	}
     	model.addAttribute("productList", EMarketApp.getStore().getProductList());
@@ -53,46 +54,22 @@ public class ItemController {
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addOrder(Model model, @ModelAttribute("order") Order order, @RequestParam(value="orderId", required=false, defaultValue="-1") int orderId) {
-    	if (order.getAmount() < 0.0) 
-			throw new SpringException("Order Amount is negative.");
-		if (order.getName().equals("")) 
-			throw new SpringException("Name is empty.");    	
-		Product product = EMarketApp.getStore().getProductList().stream().filter(p -> (((Product) p).getId() == orderId)).findAny().get();
-		order.setDescription(product.getName());
-		order.setPrice(product.getPrice());
-		order.setCost(product.getPrice()*order.getAmount());
-		lastOrderId=order.getId();
-		
-    	EMarketApp.getStore().getOrderList().removeIf(o -> (o.getId() == order.getId()));
-    	EMarketApp.getStore().getOrderList().add(order);
-    	model.addAttribute("orderList", EMarketApp.getStore().getOrderList());
-        return "form/orderDetail";
-    }
-    //
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getOrder(@ModelAttribute("order") Order order, Model model) {
-    	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-M-dd");
-    	String date = sdf.format(new Date());
-    	model.addAttribute("date",date);
-    	model.addAttribute("id",lastOrderId);
-        return "form/newOrder";
-    }
-    //
-/*    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addOrder(@ModelAttribute("order") Order order, Model model) {
     	if (order.getAmount() < 0.0) 
 			throw new SpringException("Order Amount is negative.");
+    	System.out.println("order name: "+order.getName());
 		if (order.getName().equals("")) 
-			throw new SpringException("Name is empty.");    	
+			throw new SpringException("Name is empty.");
+//		Product product = EMarketApp.getStore().getProductList().stream().filter(p -> (((Product)p).getName() == order.getName())).findAny().get();
 		Product product=EMarketApp.getStore().getProductByName(order.getName());
+		System.out.println("product name: "+product.getDescription());
 		order.setDescription(product.getDescription());
 		order.setPrice(product.getPrice());
 		order.setCost(product.getPrice()*order.getAmount());
 		
-    	EMarketApp.getStore().getOrderList().removeIf(o -> (o.getId() == order.getId()));
+//    	EMarketApp.getStore().getOrderList().removeIf(o -> (o.getId() == order.getId()));
     	EMarketApp.getStore().getOrderList().add(order);
-    	lastOrderId=order.getId();
+/*    	lastOrderId=order.getId();
     	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-M-dd");
     	String date = sdf.format(new Date());
     	if(EMarketApp.getStore().getAllOrders().containsKey(date)){
@@ -106,21 +83,12 @@ public class ItemController {
     	}
     	
     	model.addAttribute("date",date);
-    	model.addAttribute("id",lastOrderId);
+    	model.addAttribute("id",lastOrderId);*/
    		
     	model.addAttribute("orderList", EMarketApp.getStore().getOrderList());
     	
         return "form/orderDetail";
     }
-    
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getOrder(@ModelAttribute("order") Order order, Model model) {
-    	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-M-dd");
-    	String date = sdf.format(new Date());
-    	model.addAttribute("date",date);
-    	model.addAttribute("id",lastOrderId);
-        return "form/orderDetail";
-    }*/
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String itemMaster(@RequestParam(value="itemId", required=false, defaultValue="-1") int itemId, Model model) {

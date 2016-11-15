@@ -33,7 +33,7 @@
 <body>
 <h2>Order Information</h2>
 <section>
-<p>id: ${order.getId()}</p>
+<p>id: ${order.getLastId()}</p>
 <p>Date: ${order.getDate()}</p>
 </section>
 <section>
