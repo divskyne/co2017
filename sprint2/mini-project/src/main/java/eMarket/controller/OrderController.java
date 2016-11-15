@@ -49,7 +49,7 @@ public class OrderController {
     }
     
     @RequestMapping(value = "/orderDetail", method = RequestMethod.GET)
-    public String orderDetail(@ModelAttribute("order") Order order, Model model) {
+    public String orderDetail(Model model, @ModelAttribute("order") Order order, @RequestParam(value="orderId", required=false, defaultValue="-1") int orderId) {
     	if (order.getPrice() < 0.0) 
 			throw new SpringException("Value is negative.");
 		if (order.getName().equals("")) 

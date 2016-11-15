@@ -75,7 +75,7 @@ public class Order {
 	}
 	
 	public void setCost(Double amount) {
-		this.cost = amount*price;
+		this.cost = amount;
 	}
 	
 	public Double getAmount() {

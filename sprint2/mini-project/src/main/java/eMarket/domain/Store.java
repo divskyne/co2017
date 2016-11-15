@@ -4,13 +4,17 @@
 package eMarket.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Store {
 	List<Product> productList = new ArrayList<>();
 	List<Order> orderList = new ArrayList<>();
 	List<Item> itemList = new ArrayList<>();;
+	//
+	Map<String,String> allOrders=new HashMap<>();
 	
 	public void init() {
 		productList = new ArrayList<>();
@@ -43,5 +47,25 @@ public class Store {
 
 	public List<Item> getItemList() {
 		return itemList;
+	}
+	//
+	public Product getProductByName(String name) {
+		
+		for(Product product:productList){
+			if(product.getName().equals(name)){
+				return product;
+			}
+		}
+		return null;
+	}
+	public List<String> getProductNames() {
+		ArrayList<String> productNames=new ArrayList<>();
+		for(Product product:productList){
+			productNames.add(product.getName());
+		}
+		return productNames;
+	}
+	public Map<String, String> getAllOrders() {
+		return allOrders;
 	}
 }
