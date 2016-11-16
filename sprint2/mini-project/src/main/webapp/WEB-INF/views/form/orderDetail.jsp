@@ -33,8 +33,8 @@
 <body>
 <h2>Order Information</h2>
 <section>
-<p>id: ${order.getLastId()}</p>
-<p>Date: ${order.getDate()}</p>
+<p>id: ${order.getLastId()-1}</p>
+<p>Date: ${date}</p>
 </section>
 <section>
 <p>
@@ -54,16 +54,16 @@
   <td><h3></h3></td>
   <td><h3></h3></td>
 </tr>
-<c:forEach items="${orderList}" var="order">
+<c:forEach items="${itemList}" var="item">
 <tr>
-	<td><c:out value="${order.getId()}"/></td>
-	<td><c:out value="${order.getName()}"/></td>
-	<td><c:out value="${order.getDescription()}"/></td>
-	<td><c:out value="${order.getPrice()}"/></td>
-	<td><c:out value="${order.getAmount()}"/></td>
-	<td><c:out value="${order.getCost()}"/></td>
-	<td><a href="/order/orderDetail?orderId=${order.getId()}">Edit</a></td>
-	<td><a href="/order/delete?orderId=${order.getId()}">Delete</a></td>
+	<td><c:out value="${item.getId()}"/></td>
+	<td><c:out value="${item.getName()}"/></td>
+	<td><c:out value="${item.getDescription()}"/></td>
+	<td><c:out value="${item.getPrice()}"/></td>
+	<td><c:out value="${item.getAmount()}"/></td>
+	<td><c:out value="${item.getCost()}"/></td>
+	<td><a href="/order/itemDetail?orderId=${item.getId()}">Edit</a></td>
+	<td><a href="/order/delete?orderId=${item.getId()}">Delete</a></td>
 </tr>
 </c:forEach>
 </table>

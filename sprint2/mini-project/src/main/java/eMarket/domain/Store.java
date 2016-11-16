@@ -3,6 +3,7 @@
  */
 package eMarket.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Store {
 	List<Order> orderList = new ArrayList<>();
 	List<Item> itemList = new ArrayList<>();;
 	//
+	List<AllOrder> totalOrders = new ArrayList<>();
 	Map<String,String> allOrders=new HashMap<>();
 	
 	public void init() {
@@ -67,5 +69,50 @@ public class Store {
 	}
 	public Map<String, String> getAllOrders() {
 		return allOrders;
+	}
+	
+public Order getOrderByName(String name) {
+		
+		for(Order order:orderList){
+			if(order.getName().equals(name)){
+				return order;
+			}
+		}
+		return null;
+	}
+
+	public String getDate() {
+		LocalDateTime now = LocalDateTime.now();
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		int day = now.getDayOfMonth();
+		String date = year+"-"+month+"-"+day;
+		return date;
+	}
+
+	public List<AllOrder> getTotalOrders(){
+		totalOrders.clear();
+		
+		if(getAllOrders().size()>0){
+			for(String date:getAllOrders().keySet()){
+				AllOrder allorder=new AllOrder();
+				allorder.setId();
+				allorder.setDate(date);
+				allorder.setDescription(getAllOrders().get(date));
+				String []names=getAllOrders().get(date).split(" ");
+				double sumCost=0;
+				for (String order:names){
+					Order ord=getOrderByName(order);
+					if(ord!=null){
+						sumCost+=ord.getCost();	
+					}
+					
+				}
+				allorder.setCost(sumCost);
+				totalOrders.add(allorder);
+			}
+		}
+		
+		return totalOrders;
 	}
 }

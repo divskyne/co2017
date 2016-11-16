@@ -4,21 +4,22 @@
 package eMarket.domain;
 
 
-public class Item {
+public class AllOrder {
 
 	public static int lastId = 0;
     private int id = -1;
-    private String name;
+    private String date;
     private String description;
-    private Double price;
+    private Double cost;
     
-    public Item(){}
     
-    public Item(int id, String name, String description, Double price) {
+    public AllOrder(){}
+    
+    public AllOrder(int id, String date, String description, Double cost) {
 		this.setId(id);
-		this.setName(name);
+		this.setDate(date);
 		this.setDescription(description);
-		this.setPrice(price);
+		this.setCost(cost);
 	}
 
 	public void setId() {
@@ -34,12 +35,12 @@ public class Item {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getDate() {
+		return date;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getDescription() {
@@ -50,12 +51,12 @@ public class Item {
 		this.description = description;
 	}
 
-	public Double getAmount() {
-		return price;
+	public Double getCost() {
+		return cost;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setCost(Double cost) {
+		this.cost = cost;
 	}
 
 
