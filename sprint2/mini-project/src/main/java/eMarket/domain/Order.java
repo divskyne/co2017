@@ -4,8 +4,12 @@
 package eMarket.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
+	
+	private List<Item> item;
 
 	public static int lastId = 0;
     private int id = -1;
@@ -18,6 +22,8 @@ public class Order {
     public Order(){}
     
     public Order(int id, String name, String description, Double price, Double amount) {
+    	item = new ArrayList<Item>();
+    	item.add(new Item());
 		this.setId(id);
 		this.setName(name);
 		this.setDescription(description);
@@ -25,6 +31,16 @@ public class Order {
 		this.setAmount(amount);
 		this.setCost(price);
 	}
+    public void addItem(Item item)
+    {
+    	this.item.add(item);
+    }
+    public void removeItem(Item item) {
+    if (this.item.size()>1)
+    {
+    	this.item.remove(item);
+    }
+}
 
 	public void setId() {
 		this.id = lastId;
@@ -61,15 +77,6 @@ public class Order {
 		return date;
 	}
 	
-/*	public void setDate(String string) {
-		LocalDateTime now = LocalDateTime.now();
-		int year = now.getYear();
-		int month = now.getMonthValue();
-		int day = now.getDayOfMonth();
-		String date = year+"-"+month+"-"+day;
-		this.date = date.toString();
-	}
-	*/
 	public Double getCost() {
 		return cost;
 	}
