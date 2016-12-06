@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+		classpath("org.springframework:springloaded:1.2.5.RELEASE")
     }
 }
 
@@ -16,7 +17,7 @@ apply plugin: 'spring-boot'
 
 
 jar {
-	baseName = 'ProductCatalogue'
+	baseName = 'eMarket'
 	version = '0.0.1-SNAPSHOT'
 }
 
@@ -24,9 +25,10 @@ repositories {
 	mavenCentral()
 }
 
+
 eclipse {
 	project {
-	  name = 'SpringMvc_product_db'
+	  name = 'CO2006.eMarket.0.0.1-SNAPSHOT'
 	  buildCommand 'org.eclipse.jdt.core.javabuilder'
 	  buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
 	  buildCommand 'org.springframework.ide.eclipse.core.springbuilder'
@@ -36,28 +38,29 @@ eclipse {
 }
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+	
+	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") 
+//	compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
 	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 	// JSP
 	compile("org.apache.tomcat.embed:tomcat-embed-jasper:9.0.0.M11")
 	compile("javax.servlet:jstl:1.2")
-	// bootstrap
-	compile("org.webjars:bootstrap:3.3.7")
 	// cucumber
 	testCompile("info.cukes:cucumber-spring:1.2.5")
 	testCompile("info.cukes:cucumber-java:1.2.5")
 	testCompile("info.cukes:cucumber-junit:1.2.5")
-	testCompile("junit:junit:4.12")
-	// persistence
-	compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-	runtime("mysql:mysql-connector-java")
+	testCompile("junit:junit:4.11")
+	// lombok
+	compile('org.projectlombok:lombok:1.16.10')
+	// bootstrap 
+	compile("org.webjars:bootstrap:3.3.7")
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '3.1'
+	gradleVersion = '3.0'
 }
 
-// CUCUMBER CONFIGURATION
+// cucumber
 configurations {
 	cucumberRuntime {
 		extendsFrom testRuntime
