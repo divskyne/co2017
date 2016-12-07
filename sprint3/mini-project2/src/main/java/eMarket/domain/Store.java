@@ -29,6 +29,8 @@ public class Store {
 	// orphan removal forces the deletion of the object when the reference is removed
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	List<Product> productList = new ArrayList<>();
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+	List<Order> orderList = new ArrayList<>();
 	
 	public Store() {
 		
@@ -44,6 +46,14 @@ public class Store {
 	
 	public List<Product> getProductList() {
 		return productList;
+	}
+	
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+	
+	public List<Order> getOrderList() {
+		return orderList;
 	}
 	
 	

@@ -10,6 +10,7 @@
 <h1>My basic marketplace</h1>
 <div>
 <a href="/product/" class="btn btn-default">Products</a>
+<a href="/order/" class="btn btn-default">Orders</a>
 </div>
 </body>
 </html>

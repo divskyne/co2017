@@ -51,6 +51,10 @@ dependencies {
 	// persistence
 	compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
 	runtime("mysql:mysql-connector-java")
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+	compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+	
 }
 
 task wrapper(type: Wrapper) {
@@ -63,6 +67,8 @@ configurations {
 		extendsFrom testRuntime
 	}
 }
+
+
 
 task cucumber() {
 	dependsOn assemble, compileTestJava

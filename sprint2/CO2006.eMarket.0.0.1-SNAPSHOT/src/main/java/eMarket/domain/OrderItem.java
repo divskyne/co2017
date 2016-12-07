@@ -7,14 +7,54 @@ import lombok.ToString;
 @ToString
 public class OrderItem {
 
+	public static int getLastId() {
+		return lastId;
+	}
+
+	public static void setLastId(int lastId) {
+		OrderItem.lastId = lastId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public Double getCost() {
+		return cost;
+	}
+
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+
 	public static int lastId = 0;
-	@Getter @Setter
+
     private int id = -1;
-	@Getter @Setter
+
     private Product product;
-	@Getter @Setter
+
     private int amount;
-	@Getter @Setter
+
     private Double cost;
     
     public OrderItem(Product product, int amount){

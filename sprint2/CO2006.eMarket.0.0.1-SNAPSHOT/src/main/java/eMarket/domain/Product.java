@@ -8,13 +8,53 @@ import lombok.ToString;
 public class Product {
 
 	public static int lastId = 0;
-	@Getter @Setter
-    private int id = -1;
-	@Getter @Setter
+	
+    public static int getLastId() {
+		return lastId;
+	}
+
+	public static void setLastId(int lastId) {
+		Product.lastId = lastId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	private int id = -1;
+	
     private String name;
-	@Getter @Setter
+
     private String description;
-	@Getter @Setter
+	
     private Double price;
     
     public Product(){}
