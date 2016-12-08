@@ -23,6 +23,7 @@ public class EMarketApp implements CommandLineRunner {
 	public static final String STORE_NAME = "MyEMarket";
 	
 	public static final int ROLE_MANAGER = 1;
+	public static final int ROLE_CUSTOMER = 2;
 	
     public static void main(String[] args) {
         SpringApplication.run(EMarketApp.class, args);
@@ -47,6 +48,16 @@ public class EMarketApp implements CommandLineRunner {
 		role.setRole("ROLE_MANAGER");
 		user.setRole(role);
 		userRepo.save(user);
+		
+
+		User user1 = new User();
+		user1.setLogin("Alice");
+		user1.setPassword(pe.encode("password"));
+		Role role1 = new Role();
+		role1.setId(ROLE_CUSTOMER);
+		role1.setRole("ROLE_CUSTOMER");
+		user1.setRole(role1);
+		userRepo.save(user1);
 		
     }   
 

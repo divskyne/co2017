@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
@@ -20,6 +21,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
+	
+	// Java configuration equivalent to 
+	// <mvc:default-servlet-handler/> in spring-servlet.xml
+	// used to use bootstrap when security is enabled
+	@Override
+    public void configureDefaultServletHandling(
+            DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 	
 	//Resolves views selected for rendering by @Controllers to .jsp resources in the 
 	// /WEB-INF/views directory

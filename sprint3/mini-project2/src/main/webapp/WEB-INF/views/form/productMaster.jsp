@@ -33,6 +33,7 @@
 <section>
 <a href="/product/productDetail" class="btn btn-default">Add new product</a>
 <a href="/" class="btn btn-default">Main page</a>
+<a href="/logout" class="btn btn-default">Log out</a>
 <p/>
 </section>
 <section>

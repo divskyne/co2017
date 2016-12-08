@@ -3,8 +3,6 @@ package eMarket.controller;
 import java.util.List;
 
 import eMarket.domain.Product;
-import lombok.Getter;
-import lombok.Setter;
 
 public class ItemFormDto {
 	

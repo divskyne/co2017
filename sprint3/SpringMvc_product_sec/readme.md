@@ -88,7 +88,7 @@ A user object is used to store the user name and the password for authentication
 
 ##### Repository
 
-The repositories for `User` and `Role` objects can be found in interfaces `eMarket.repository.UserRepository` and `eMarket.repository.CustomerRepository`.
+The repositories for `User` and `Role` objects can be found in interfaces `eMarket.repository.UserRepository` and `eMarket.repository.RoleRepository`.
 
 ##### Service layer
 
