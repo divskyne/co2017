@@ -7,30 +7,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity(name="orderitems")
+@Entity(name="item")
 public class OrderItem {
 	
-	public static int lastId = 0;
+	public static int lastId = 1;
+	
+	@ManyToOne
+	private Product product;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id = -1;
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn (name = "productId")
-    private Product product;
 
 	@Column
     private int amount;
 	@Column
 	private Double cost;
+	
+	public OrderItem(){}
     
-    public OrderItem(Product item, int amount){
+    public OrderItem(Product product, int amount){
     	this.id = lastId;
     	lastId++;
-    	this.product = item;
+    	this.product = product;
     	this.amount = amount;
-    	this.cost = amount * item.getPrice();
+    	this.cost = amount * product.getPrice();
     }
 
 	public int getAmount() {
@@ -40,17 +44,9 @@ public class OrderItem {
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getLastId() {
-		return lastId;
-	}
-
-	public void setLastId(int lastId) {
-		OrderItem.lastId = lastId;
+		id = lastId;
+		lastId++;
 	}
 
 	public Double getCost() {

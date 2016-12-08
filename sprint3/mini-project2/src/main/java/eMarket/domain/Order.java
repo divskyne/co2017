@@ -3,43 +3,28 @@
  */
 package eMarket.domain;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import eMarket.EMarketApp;
-import eMarket.repository.StoreRepository;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity(name="orders")
 public class Order {
 
-	
-	@Transient
-	public int lastId = 0;
+	public static int lastId = 1;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	private int id;
-	@Column
-	private String description;
+	private int id =-1;
 	@Column
 	private Double cost = 0.0;
 
@@ -49,9 +34,8 @@ public class Order {
 	@Column
     private LocalDate date = LocalDate.now();
     
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
     private List<OrderItem> itemList = new ArrayList<>();
-//    private Double cost = 0.0;
 
 	public Order() { }
 	
@@ -86,7 +70,6 @@ public class Order {
 	}
 	
 	public void addItem(Product product, int amount) {
-//		Product product = getProduct(productId);
 		this.getItemList().add(new OrderItem(product,amount));
 		updateCost();
 	}
@@ -95,12 +78,6 @@ public class Order {
 		cost = 0.0;
 		this.getItemList().forEach(i -> cost += i.getAmount() * i.getProduct().getPrice());
 	}
-
-
-//	private Product getProduct(int productId) {
-//		Store store = storeRepo.findByName(EMarketApp.STORE_NAME).get(0);
-//		return store.getProductList().stream().filter(p -> p.getId()==productId).findFirst().orElse(null);
-//	}
 
 	public int getId() {
 		return id;
@@ -121,10 +98,6 @@ public class Order {
 		LocalDate date = LocalDate.now();
 		this.date = date;
     }
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Double getCost() {
 		return cost;

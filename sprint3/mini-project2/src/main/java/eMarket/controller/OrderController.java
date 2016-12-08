@@ -30,26 +30,20 @@ public class OrderController {
     public String orderMaster(Model model) {
     	Store store = storeRepo.findByName(EMarketApp.STORE_NAME).get(0);
        	model.addAttribute("orderList", store.getOrderList());
-       	storeRepo.save(store);
         return "form/orderMaster";
     }	
    
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String orderDetail(@ModelAttribute("order") Order order, @RequestParam(value="orderId", required=false, defaultValue="-1") int orderId) {
+    public String orderDetail(@ModelAttribute("order") Order order, Model model, @RequestParam(value="orderId", required=false, defaultValue="-1") int orderId) {
     	
     	Store store = storeRepo.findByName(EMarketApp.STORE_NAME).get(0);
-		if (orderId > -1) {    	
-//    	if (orderId >= 0) {   	
+		if (orderId > -1) {    	   	
 	    	Order orderAux = store.getOrderList().stream().filter(o -> o.getId()==orderId).findFirst().orElse(null); // might give nullpointer in future
 	    	order.setId(orderAux.getId());
-//	    	order.setDate();
 	    	order.setDate(orderAux.getDate());
-	    	// commented for code to work, but add later
 	    	order.setItemList(orderAux.getItemList());
 	    	order.setUser(orderAux.getUser());
 	    	order.setCost(orderAux.getCost());
-	    	System.out.println(order.toString());
-	    	orderRepo.save(order);
     	}
 	    	else {
 	    	    order.setId();
@@ -57,6 +51,7 @@ public class OrderController {
 	    	}
 
     	storeRepo.save(store);
+    	model.addAttribute("orderList", store.getOrderList());
     	
     	return "form/orderDetail";
     }   

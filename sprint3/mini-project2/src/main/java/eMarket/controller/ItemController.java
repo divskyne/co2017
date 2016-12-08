@@ -19,6 +19,9 @@ import eMarket.domain.Order;
 import eMarket.domain.OrderItem;
 import eMarket.domain.Product;
 import eMarket.domain.Store;
+import eMarket.repository.ItemRepository;
+import eMarket.repository.OrderRepository;
+import eMarket.repository.ProductRepository;
 import eMarket.repository.StoreRepository;
 
 @Controller
@@ -26,6 +29,8 @@ import eMarket.repository.StoreRepository;
 public class ItemController {
 	
 	@Autowired StoreRepository storeRepo;
+	@Autowired ItemRepository itemRepo;
+	@Autowired OrderRepository orderRepo;
 	
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String itemDetail(
@@ -56,30 +61,23 @@ public class ItemController {
     	}
     	
     	Order order = store.getOrderList().stream().filter(o -> o.getId() == itemFormDto.getOrderId()).findAny().orElse(null);
-    	System.out.println("store.getOrderList().toString(): "+store.getOrderList().toString());
-    	System.out.println("itemFormDto.getOrderId(): "+itemFormDto.getOrderId());
-    	System.out.println("store.getOrderList().stream().filter(o -> o.getId() == itemFormDto.getOrderId()): "+store.getOrderList().stream().filter(o -> o.getId() == itemFormDto.getOrderId()).toString());
-    	System.out.println("store.getOrderList().stream().count(): "+store.getOrderList().stream().count());
-    	System.out.println("order: "+order);
-    	System.out.println("store.getOrderList().stream().filter(p -> p.getId()==1): "+store.getOrderList().stream().filter(p -> p.getId()==1)/*filter(o -> o.getId())*/);
-    	System.out.println("store.getOrderList().stream().filter(p -> p.getId()==0): "+store.getOrderList().stream().filter(p -> p.getId()==0)/*filter(o -> o.getId())*/);
-    	
+        	
     	if (action.startsWith("Submit")) {
     		Optional<OrderItem> itemOp = order.getItemList().stream().filter(p -> (p.getId() == itemFormDto.getId())).findFirst();
     		if (itemOp.isPresent()) {
-    			// edit
     			OrderItem item = itemOp.get();
     			Product product = store.getProductList().stream().filter(p -> p.getId() == itemFormDto.getProductId()).findFirst().get();
     			item.setProduct(product);
     			item.setAmount(itemFormDto.getAmount());
     			item.setCost(item.getProduct().getPrice() * item.getAmount());
     			order.updateCost();
-    			
+    			itemRepo.save(item);
     		} else {
-    			// create
-    			Product product = itemFormDto.getProductList().stream().filter(p -> p.getId() == itemFormDto.getId()).findFirst().get();
+    			Product product = store.getProductList().stream().filter(p -> p.getId() == itemFormDto.getProductId()).findFirst().get();
     			order.addItem(product, itemFormDto.getAmount());
+    			orderRepo.save(order);
     		}
+    		storeRepo.save(store);
     	} 
     	model.addAttribute("order", order);
     	return "form/orderDetail";
@@ -95,6 +93,7 @@ public class ItemController {
     	Order order = store.getOrderList().stream().filter(o -> o.getId()==orderId).findFirst().get();
     	order.getItemList().removeIf(p -> p.getId()==itemId);
     	order.updateCost();
+    	storeRepo.save(store);
     	model.addAttribute("order", order);
     	return "form/orderDetail";
     }   
