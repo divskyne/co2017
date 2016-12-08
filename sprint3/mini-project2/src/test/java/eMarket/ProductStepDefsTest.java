@@ -157,24 +157,26 @@ public class ProductStepDefsTest {
 
     @Given("^an order X without any items$")
     public void an_order_X_without_any_items() throws Throwable {
-    	
+    	order = new Order();
+    	orderRepo.save(order);
+    	store = getStore();
+    	store.getOrderList().add(order);
+    	storeRepo.save(store);
     }
 
-    @When("^I do a post \"([^\"]*)\" for the order X with an item with product \"([^\"]*)\" and amount \"([^\"]*)\"$")
-    public void i_do_a_post_for_the_order_X_with_an_item_with_product_and_amount(String request, String product, String amount) throws Throwable {
+    @When("^I do a post \"([^\"]*)\" for the order X with with an  item with product \"([^\"]*)\" and amount \"([^\"]*)\"$")
+    public void i_do_a_post_for_the_order_X_with_an_item_with_product_and_amount(String request, String name, int amount) throws Throwable {
+    	order.addItem(product, amount);
     	result = this.mockMvc.perform(post(request)
-    			.param("action", "submit")
-    			.param("productId", product)
-    			.param("amount", amount));
+    			.param("id", String.valueOf(order.getId()))
+    			.param("name", name)
+    			.param("amount", String.valueOf(amount)));
     }
 
     @Then("^the order X contains an item with \"([^\"]*)\" products \"([^\"]*)\" and the total cost of the order is \"([^\"]*)\"$")
-    public void the_order_X_contains_an_item_with_products_and_the_total_cost_of_the_order_is(String cost, String arg2, String amount) throws Throwable {
-		Order o2 = store.getOrderList().stream().filter(o -> (((Order) o).getId() == order.getId())).findAny().get();
-		assertThat(o2.getCost(), is(cost));
-		OrderItem i2 = o2.getItemList().stream().filter(i -> i.getId() == item.getId()).findAny().get();
-		assertThat(i2.getProduct().getId(), is(item.getId()));
-assertThat(i2.getAmount(), is(amount));
+    public void the_order_X_contains_an_item_with_products_and_the_total_cost_of_the_order_is(int amount, String name, Double cost) throws Throwable {
+		OrderItem o2 = order.getItemList().get(0);
+		assertThat("Item not added to the catalogue.", !(o2.getAmount()==amount && o2.getProduct().getName().equals(name) && o2.getCost()==cost));
     }
 
     @When("^I delete the order X using \"([^\"]*)\"$")
@@ -189,7 +191,7 @@ assertThat(i2.getAmount(), is(amount));
 
     }
 
-    @Given("^an order X with an item with product \"([^\"]*)\" and amount \"([^\"]*)\"$")
+    @Given("^an order X with with an item with product \"([^\"]*)\" and amount \"([^\"]*)\"$")
     public void an_order_X_with_with_an_item_with_product_and_amount(String arg1, String arg2) throws Throwable {
 //        Order o = new Order();
 //        o.addItem(product, amount);
@@ -207,6 +209,10 @@ assertThat(i2.getAmount(), is(amount));
 		Order o2 = store.getOrderList().stream().filter(o -> (((Order) o).getId() == order.getId())).findAny().get();
 		assertThat(o2.getCost(), is(cost));
 assertThat(o2.getItemList().stream().filter(i -> i.getId() == item.getId()).findAny().isPresent(),is(false));
+    }
+    @When("^I do a post \"([^\"]*)\" for the order X with an item with product \"([^\"]*)\" and amount \"([^\"]*)\"$")
+    public void i_do_a_post_for_the_order_X_with_an_item_with_product_and_amount(String arg1, String arg2, String arg3) throws Throwable {
+        
     }
     
 }
