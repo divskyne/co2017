@@ -33,6 +33,7 @@
 <section>
 <a href="/order/add/" class="btn btn-default">Add new order</a>
 <a href="/" class="btn btn-default">Main page</a>
+<a href="/logout" class="btn btn-default">Logout</a>
 <p/>
 </section>
 <table class="TFtable">

@@ -50,14 +50,14 @@ public class EMarketApp implements CommandLineRunner {
 		userRepo.save(user);
 		
 
-		User user1 = new User();
-		user1.setLogin("Alice");
-		user1.setPassword(pe.encode("password"));
-		Role role1 = new Role();
-		role1.setId(ROLE_CUSTOMER);
-		role1.setRole("ROLE_CUSTOMER");
-		user1.setRole(role1);
-		userRepo.save(user1);
+		User userAlice = new User();
+		userAlice.setLogin("Alice");
+		userAlice.setPassword(pe.encode("password"));
+		Role roleAlice = new Role();
+		roleAlice.setId(ROLE_CUSTOMER);
+		roleAlice.setRole("ROLE_CUSTOMER");
+		userAlice.setRole(roleAlice);
+		userRepo.save(userAlice);
 		
     }   
 

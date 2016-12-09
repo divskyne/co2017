@@ -11,6 +11,7 @@
 <div>
 <a href="/product/" class="btn btn-default">Products</a>
 <a href="/order/" class="btn btn-default">Orders</a>
+<a href="/logout" class="btn btn-default">Logout</a>
 </div>
 </body>
 </html>
