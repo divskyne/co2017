@@ -3,6 +3,7 @@
 If you prefer to read this worksheet on GitHub: follow [this link](https://github.com/uol-inf/CO2006-16-17/blob/master/sprint2/readme.md). 
 * The advantage is that links to Pluralsight resources work directly.
 
+
 # Sprint 2: Spring MVC and BDD
 
 In this sprint, we are going to focus on how to build web applications using Java and the MVC architectural style and on testing them using agile testing based on test-driven development and behaviour-driven development.
